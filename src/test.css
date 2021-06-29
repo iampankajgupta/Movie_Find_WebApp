@@ -1,0 +1,10 @@
+.carousel-control-prev-icon,.carousel-control-next-icon{
+    background: none;   
+    font-weight: bolder ;
+    
+}
+
+.sr-only{
+    background: none;
+    font-weight: 900;
+}

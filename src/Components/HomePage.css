@@ -1,0 +1,32 @@
+
+
+*{
+    margin: 0px;
+    padding: 0px;
+    color: white;
+}
+
+
+.trending_title{
+    margin: 40px 10px;
+}
+
+.anime_title{
+    margin: 500px 10px;
+}
+
+.movie_types{
+    width: 250px;
+    padding: 10px;
+    float: right;
+    margin:10px 15px;
+}
+
+.show__all__text{
+   color: aqua;
+}
+
+.show__all__text:hover{
+    color: red;
+    text-decoration: underline;
+}

@@ -1,0 +1,172 @@
+.header{
+    width: 100%;
+    margin: 15px 0px;
+    font-size: 15px;
+
+    scroll-behavior: smooth;
+}
+
+.container{
+    padding: 10px 0px;
+}
+.movie__overview{
+   
+    font-size: 10px;
+}
+.movie__img{
+    color: white;
+    object-fit: contain;
+    height: 448px;
+    background: none;
+    background-repeat: no-repeat;
+}
+span{
+    font-size: 15px;
+    margin: 0px 5px;
+}
+
+.movie__rating{
+    display: flex;
+    flex-direction: row;
+}
+
+.body{
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    object-fit: contain;
+    overflow-x: scroll;
+}
+
+.similar__movies{
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    object-fit: contain;
+    overflow-x: scroll;
+}
+
+.simMovie__img{
+    width: 185px;
+    height: 195px;
+    margin: 5px 10px;
+}
+
+.simMovie__title{
+    margin: 10px 10px;
+
+}
+
+.xyz{
+    width: 100%;
+}
+
+.movie__genres{
+    margin: 30px 0px;
+}
+.movies__info{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    margin-bottom: 40px;
+    
+}
+
+
+.runtime,.budget,.release__date{
+    margin: 10px 3px;
+    color: #E50914;
+
+}
+
+ .box img {
+    width: 100%;
+    height: auto;
+ }
+ .box .btn {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+ }
+
+ .box{
+     position: relative;
+     width: 100%;
+ }
+
+ .title{
+     margin: 10px 0px;
+ }
+
+.play_btn{
+    position: absolute;
+    top: 25%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    background: none;
+}
+
+.play_btn:hover{
+    background-color: #E50914;
+    border-radius: 50%;
+}
+
+.body::-webkit-scrollbar-track{
+    background: #141414;
+    border-radius: 10px;
+}
+
+
+
+.body::-webkit-scrollbar-thumb{
+    background: grey;
+    border-radius: 10px;
+}
+
+.body::-webkit-scrollbar-thumb:hover{
+    background: rgb(240, 92, 92);
+    border-radius: 10px;
+}
+
+.body::-webkit-scrollbar-thumb:active{
+    background: rgb(231, 55, 55);
+    border-radius: 10px;
+
+}
+
+.body::-webkit-scrollbar{
+    width: 3px;
+    height: 10px;
+}
+
+
+
+
+.similar__movies::-webkit-scrollbar-track{
+    background: #141414;
+    border-radius: 10px;
+}
+
+
+
+.similar__movies::-webkit-scrollbar-thumb{
+    background: grey;
+    border-radius: 10px;
+}
+
+.similar__movies::-webkit-scrollbar-thumb:hover{
+    background: rgb(240, 92, 92);
+    border-radius: 10px;
+}
+
+.similar__movies::-webkit-scrollbar-thumb:active{
+    background: rgb(231, 55, 55);
+    border-radius: 10px;
+
+}
+
+.similar__movies::-webkit-scrollbar{
+    width: 3px;
+    height: 10px;
+}
