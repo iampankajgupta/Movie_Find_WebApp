@@ -35,18 +35,17 @@ const Search = ({ fetchUrl }) => {
     let current_movie_genre = window.location.href.split('/')[3];
     // get the genre of movie
     let genre = map.get(current_movie_genre);
-    // console.log(current_movie_genre);
+    console.log(genre);
 
-
-    let gen = window.location.href.split('/')[3];
 
     const fetchData = async () => {
-        const requests = await axios.get(`/search/movie?api_key=${APIKEY}&language=en-US&page=1&include_adult=false&query=${values}&page=${page}&genre=${genre}`)
+        const requests = await axios.get(`/search/movie?api_key=${APIKEY}&language=en-US&page=1&include_adult=false&query=${values}&page=${page}&genre=${current_movie_genre}`);
         setMovies(requests.data.results);
         setNumOfPages(requests.data.total_pages)
         return requests;
 
     }
+
     const fetchData1 = async () => {
         const request = await axios.get(genre + `&page=${page}`);
         setMovies(request.data.results);
@@ -55,8 +54,7 @@ const Search = ({ fetchUrl }) => {
     }
 
 
-    const fetchAllMovies = async ()=>{
-
+    const fetchAllMovies = async () => {
         const request = await axios.get(`/discover/movie?api_key=${APIKEY}&language=en-US&sort_by=popularity.desc&include_adult=false&include_video=false&page=${page}`);
         setMovies(request.data.results);
         setNumOfPages(request.data.total_pages);
@@ -64,17 +62,13 @@ const Search = ({ fetchUrl }) => {
 
     }
 
-    const fetchSearchMovie = async ()=>{
-        console.log('====================================');
-        console.log("called");
-        console.log('====================================');
+    const fetchSearchMovie = async () => {
         const requests = await axios.get(`/search/movie?api_key=${APIKEY}&language=en-US&page=1&include_adult=false&query=${values}&page=${page}`)
         setMovies(requests.data.results);
         setNumOfPages(requests.data.total_pages)
         return requests;
     }
     useEffect(() => {
-
         // async function fetchGenres() {
         //     const { data } = await axios.get(`/genre/movie/list?api_key=${APIKEY}`);
         //     setGenres(data.genres);
@@ -94,33 +88,27 @@ const Search = ({ fetchUrl }) => {
         //     setMovies(requests.data.results);
         //     setNumOfPages(requests.data.total_pages)
         //     return requests;
-
         // }
         if (values.length !== 0) {
-            fetchData1();
+
+            if (current_movie_genre !== 'search') {
+                fetchData();
+            } else {
+                fetchSearchMovie();
+            }
         }
-        else if(genre==='Comedy'||genre==='Action' || genre==='Romance' || genre==='Horror') {
-            fetchData();
+        else if (current_movie_genre === 'search') {
+            fetchAllMovies();
+        }
+        else if (current_movie_genre === 'Comedy' || current_movie_genre === 'Action' || current_movie_genre === 'Romance' || current_movie_genre === 'Horror') {
+            fetchData1();
         }
     }, [values, page])
 
-
-    useEffect(() => {
-        if(gen==='search' && inputValues.length===0){
-            fetchAllMovies(); 
-        }else if(inputValues.length!==0){
-            fetchSearchMovie();
-        }
-
-    },[inputValues,page]);
-
     // taking input from user 
     const getValues = (e) => {
-        if(gen==='search'){
-            setInputValues(e.target.value)
-        }else{
-            setValues(e.target.value)   
-        }
+
+        setValues(e.target.value);
     }
 
     const handleMovie = (id) => {
@@ -131,12 +119,11 @@ const Search = ({ fetchUrl }) => {
             <div className="header">
 
                 <div className="header__container">
-                    <input className="header__input" value={gen==='search'?inputValues:values} onChange={getValues} type="text" style={{ fontSize: "25px" }} placeholder="Search For Movies " />
+                    <input className="header__input" value={values} onChange={getValues} type="text" style={{ fontSize: "25px" }} placeholder="Search For Movies " />
                     <button className="search__btn" onClick={() => setModalIsOpen(true)} >Filter Movie</button>
                 </div>
 
                 {movies.map(movie => (
-
                     <>
                         {movie.vote_average > rating && <MovieCard
                             val={movie.id}
@@ -147,20 +134,20 @@ const Search = ({ fetchUrl }) => {
                         />}
                     </>
                 ))}
-                {/* 
 
 
-                {/* <Modal >
+
+                <Modal open={modalIsOpen} onRequestClose = {()=>setModalIsOpen(false)} >
                     <h1>Filter Movie</h1>
-                    <Genres
+                    {/* <Genres
                         type="movie"
                         selectedGenres={selectedGenres}
                         setSelectedGenres={setSelectedGenres}
-                        genres={genres}
+                        current_movie_genreres={genres}
                         setGenres={setGenres}
-                        setPage={setPage} />
+                        setPage={setPage} /> */}
 
-                </Modal> */}
+                </Modal>
 
                 <CustomPagination setPage={setPage} numOfPages={numOfPages} />
             </div>
